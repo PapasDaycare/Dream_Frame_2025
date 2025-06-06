@@ -2,21 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DreamFrame LLC</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #0b0c2a, #000);
+      color: #ffffff;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
 
     header {
-      text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
       background: #0f172a;
+    }
+
+    header img {
+      max-width: 250px;
+      height: auto;
+      margin-bottom: 20px;
     }
 
     header h1 {
@@ -26,12 +32,12 @@
 
     header p {
       font-size: 18px;
-      color: #94a3b8;
+      color: #cbd5e1;
     }
 
     section {
       padding: 40px 20px;
-      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     h2 {
@@ -40,46 +46,56 @@
     }
 
     .btn {
-      background-color: #3b82f6;
+      background: #3b82f6;
       color: white;
       padding: 12px 24px;
       border: none;
       border-radius: 6px;
       font-size: 16px;
+      margin-top: 10px;
       cursor: pointer;
     }
 
-    .contact-form input, .contact-form textarea {
+    .contact-form input,
+    .contact-form textarea {
       width: 90%;
       padding: 12px;
       margin: 10px 0;
+      border-radius: 6px;
       border: none;
-      border-radius: 5px;
     }
 
     .contact-form button {
       margin-top: 10px;
+    }
+
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="logo.jpg" alt="DreamFrame LLC Logo" />
     <h1>DreamFrame LLC</h1>
-    <p>We turn your memories into motion – AI-crafted custom videos.</p>
-    <button class="btn">Get Started</button>
+    <p>We turn your memories into motion – custom-crafted videos.</p>
   </header>
 
   <section>
     <h2>About Us</h2>
-    <p>DreamFrame is a veteran-owned business that transforms your favorite photos into beautiful, moving stories powered by AI.</p>
+    <p>DreamFrame is a veteran-owned business that transforms your favorite photos into beautiful, moving stories.</p>
   </section>
 
   <section>
     <h2>Our Services</h2>
-    <p>• 5–10 second animated videos<br>
-       • Voiceovers & music<br>
-       • Personal and business packages</p>
+    <p>
+      • 5–15 second animated videos<br>
+      • Voiceovers & music<br>
+      • Personal and business packages
+    </p>
   </section>
 
   <section>
@@ -99,9 +115,25 @@
   </section>
 
   <section>
-    <h2>Ready to Bring Your Photos to Life?</h2>
-    <button class="btn">Purchase Now</button>
+    <h2>Select Your Video Length</h2>
+    <p>Choose your custom-crafted video experience:</p>
+
+    <a href="https://buy.stripe.com/test_5sec" target="_blank">
+      <button class="btn">Buy 5-Second Video – $15</button>
+    </a><br><br>
+
+    <a href="https://buy.stripe.com/test_10sec" target="_blank">
+      <button class="btn">Buy 10-Second Video – $30</button>
+    </a><br><br>
+
+    <a href="https://buy.stripe.com/test_15sec" target="_blank">
+      <button class="btn">Buy 15-Second Video – $45</button>
+    </a>
   </section>
+
+  <footer>
+    &copy; 2025 DreamFrame LLC. All rights reserved.
+  </footer>
 
 </body>
 </html>
