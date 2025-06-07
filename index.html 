@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DreamFrame LLC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #f8fafc;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: #0f172a;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #94a3b8;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DreamFrame LLC</h1>
+    <p>We turn your memories into motion – AI-crafted custom videos.</p>
+    <button class="btn">Get Started</button>
+  </header>
+
+  <section>
+    <h2>About Us</h2>
+    <p>DreamFrame is a veteran-owned business that transforms your favorite photos into beautiful, moving stories powered by AI.</p>
+  </section>
+
+  <section>
+    <h2>Our Services</h2>
+    <p>• 5–10 second animated videos<br>
+       • Voiceovers & music<br>
+       • Personal and business packages</p>
+  </section>
+
+  <section>
+    <h2>How It Works</h2>
+    <p>1. Upload a photo<br>2. Choose your style<br>3. Receive your custom video</p>
+  </section>
+
+  <section>
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required><br>
+      <input type="email" placeholder="Your Email" required><br>
+      <textarea placeholder="Your Message" rows="4" required></textarea><br>
+      <input type="file" accept="image/*"><br>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Ready to Bring Your Photos to Life?</h2>
+    <button class="btn">Purchase Now</button>
+  </section>
+
+</body>
+</html>
