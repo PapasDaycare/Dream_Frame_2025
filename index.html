@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoryMotion - Transform Photos into Beautiful Videos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Video Duration Options */
+        .duration-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .duration-section h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .duration-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .duration-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .duration-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .duration-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #feca57;
+        }
+
+        .duration-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .duration-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .upload-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .upload-area {
+            border: 3px dashed #cbd5e0;
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            background: #f7fafc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e6fffa;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: #718096;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .process-steps h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            color: white;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .duration-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- DreamFrame Logo Header with Glowing Star -->
+<header style="text-align: center; padding: 20px; background: linear-gradient(135deg, #0a0a2a, #1a1a3a, #2a1a4a);">
+    <style>
+        .glowing-star {
+            font-size: 40px;
+            color: #ffffff;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #00ffff,
+                0 0 35px #00ffff,
+                0 0 40px #00ffff,
+                0 0 50px #00ffff,
+                0 0 75px #00ffff;
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            from {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #fff,
+                    0 0 20px #00ffff,
+                    0 0 35px #00ffff,
+                    0 0 40px #00ffff,
+                    0 0 50px #00ffff,
+                    0 0 75px #00ffff;
+            }
+            to {
+                text-shadow: 
+                    0 0 2px #fff,
+                    0 0 5px #fff,
+                    0 0 8px #fff,
+                    0 0 12px #00ffff,
+                    0 0 25px #00ffff,
+                    0 0 30px #00ffff,
+                    0 0 35px #00ffff,
+                    0 0 50px #00ffff;
+            }
+        }
+    </style>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px; color: white; text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);">
+        <div style="font-size: 3rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;">DREAM</div>
+        <div class="glowing-star">★</div>
+        <div style="font-size: 3rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;">FRAME</div>
+        <div style="font-size: 1.5rem; font-weight: 300; letter-spacing: 0.3em; margin-left: 15px; opacity: 0.9;">LLC</div>
+    </div>
+</header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Transform Your Photos into Beautiful Videos</h1>
+            <p>Turn your cherished family memories into stunning video montages</p>
+            <a href="#upload" class="cta-button">Start Creating Now</a>
+        </section>
+
+        <section id="services" class="duration-section">
+            <h2>Choose Your Video Length</h2>
+            <div class="duration-options">
+                <div class="duration-card" data-duration="5">
+                    <h3>5 Seconds</h3>
+                    <p>Perfect for social media stories and quick sharing</p>
+                    <button class="cta-button">Select</button>
+                </div>
+                <div class="duration-card" data-duration="10">
+                    <h3>10 Seconds</h3>
+                    <p>Ideal for showcasing special moments with smooth transitions</p>
+                    <button class="cta-button">Select</button>
+                </div>
+                <div class="duration-card" data-duration="15">
+                    <h3>15 Seconds</h3>
+                    <p>Extended storytelling with music and professional effects</p>
+                    <button class="cta-button">Select</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="upload" class="upload-section">
+            <h2>Upload Your Photos</h2>
+            <p>Drag and drop your favorite family photos or click to browse</p>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📸</div>
+                <div class="upload-text">
+                    <strong>Click to upload</strong> or drag photos here<br>
+                    <small>Supports JPG, PNG, HEIC - Up to 50 photos</small>
+                </div>
+                <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
+            </div>
+            <div class="photo-preview" id="photoPreview"></div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Smart Editing</h3>
+                <p>Intelligent transitions and effects that make your photos shine</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>DreamBot Assistant</h3>
+                <p>AI-powered chat support to help with all your questions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Optimized</h3>
+                <p>Perfect for all social media platforms</p>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="process-steps">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Photos</h3>
+                    <p>Select your favorite family photos</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Choose Duration</h3>
+                    <p>Pick 5, 10, or 15 second video</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Smart Magic</h3>
+                    <p>Our technology creates beautiful transitions</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Download & Share</h3>
+                    <p>Receive your finished video</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- DreamBot Button -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="dreambot-btn" style="
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        ">
+            🤖 DreamBot
+        </button>
+    </div>
+
+    <!-- DreamBot Chat Modal -->
+    <div id="dreambot-modal" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        backdrop-filter: blur(5px);
+    ">
+        <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        ">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0; color: #4a5568;">🤖 DreamBot Assistant</h3>
+                <button id="close-dreambot" style="
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: #718096;
+                ">×</button>
+            </div>
+            <div id="chat-messages" style="
+                min-height: 300px;
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid #e2e8f0;
+                border-radius: 10px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                background: #f7fafc;
+            ">
+                <div style="
+                    background: linear-gradient(45deg, #667eea, #764ba2);
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 15px;
+                    margin-bottom: 10px;
+                    max-width: 80%;
+                ">
+                    👋 Hi! I'm DreamBot, your AI assistant. How can I help you with creating your video today?
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="chat-input" placeholder="Ask me anything..." style="
+                    flex: 1;
+                    padding: 12px;
+                    border: 1px solid #cbd5e0;
+                    border-radius: 25px;
+                    outline: none;
+                    font-size: 14px;
+                ">
+                <button id="send-message" style="
+                    background: linear-gradient(45deg, #667eea, #764ba2);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 45px;
+                    height: 45px;
+                    cursor: pointer;
+                    font-size: 18px;
+                ">→</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const photoPreview = document.getElementById('photoPreview');
+        let selectedFiles = [];
+
+        // Click to upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    selectedFiles.push(file);
+                    displayPhoto(file);
+                }
+            });
+        }
+
+        function displayPhoto(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Uploaded photo">
+                    <button class="remove-btn" onclick="removePhoto(this)">×</button>
+                `;
+                photoPreview.appendChild(photoItem);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removePhoto(button) {
+            const photoItem = button.parentElement;
+            const index = Array.from(photoPreview.children).indexOf(photoItem);
+            selectedFiles.splice(index, 1);
+            photoItem.remove();
+        }
+
+        // Duration card selection
+        document.querySelectorAll('.duration-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove active class from all cards
+                document.querySelectorAll('.duration-card').forEach(c => {
+                    c.style.transform = '';
+                    c.style.background = '';
+                });
+                
+                // Add active state to clicked card
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+                card.style.background = 'rgba(255, 255, 255, 0.25)';
+                
+                const duration = card.dataset.duration;
+                console.log(`Selected ${duration} second video`);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Initialize first section as visible
+        document.querySelector('.hero').style.opacity = '1';
+        document.querySelector('.hero').style.transform = 'translateY(0)';
+
+        // DreamBot functionality
+        const dreambotBtn = document.getElementById('dreambot-btn');
+        const dreambotModal = document.getElementById('dreambot-modal');
+        const closeDreambot = document.getElementById('close-dreambot');
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+        const chatMessages = document.getElementById('chat-messages');
+
+        dreambotBtn.addEventListener('click', () => {
+            dreambotModal.style.display = 'block';
+            chatInput.focus();
+        });
+
+        closeDreambot.addEventListener('click', () => {
+            dreambotModal.style.display = 'none';
+        });
+
+        dreambotModal.addEventListener('click', (e) => {
+            if (e.target === dreambotModal) {
+                dreambotModal.style.display = 'none';
+            }
+        });
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                background: ${isUser ? '#e2e8f0' : 'linear-gradient(45deg, #667eea, #764ba2)'};
+                color: ${isUser ? '#2d3748' : 'white'};
+                padding: 10px 15px;
+                border-radius: 15px;
+                margin-bottom: 10px;
+                max-width: 80%;
+                ${isUser ? 'margin-left: auto;' : ''}
+            `;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const responses = [
+                        "I'd be happy to help! What specific questions do you have about creating your video?",
+                        "Great question! Our service supports JPG, PNG, and HEIC image formats. You can upload up to 50 photos.",
+                        "The video creation process typically takes a few minutes depending on the number of photos and selected duration.",
+                        "You can choose between 5, 10, or 15 second videos. Each offers different storytelling possibilities!",
+                        "Once your video is ready, you'll be able to download it in high quality, perfect for sharing on social media.",
+                        "Our smart editing technology automatically creates smooth transitions between your photos with professional effects."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse);
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Hover effect for DreamBot button
+        dreambotBtn.addEventListener('mouseenter', () => {
+            dreambotBtn.style.transform = 'translateY(-3px)';
+            dreambotBtn.style.boxShadow = '0 15px 40px rgba(102, 126, 234, 0.4)';
+        });
+
+        dreambotBtn.addEventListener('mouseleave', () => {
+            dreambotBtn.style.transform = 'translateY(0)';
+            dreambotBtn.style.boxShadow = '0 10px 30px rgba(102, 126, 234, 0.3)';
+        });
+    </script>
+
+		
+		
+		</body>
+</html>
