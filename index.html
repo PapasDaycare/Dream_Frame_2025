@@ -426,24 +426,31 @@
             <div class="photo-preview" id="photoPreview"></div>
         </section>
 
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3>Smart Editing</h3>
-                <p>Intelligent transitions and effects that make your photos shine</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>DreamBot Assistant</h3>
-                <p>AI-powered chat support to help with all your questions</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Mobile Optimized</h3>
-                <p>Perfect for all social media platforms</p>
-            </div>
-        </
->
+       
+        
+<section style="padding: 60px 20px; text-align: center;">
+  <div style="
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  ">
+    <h2 style="margin-bottom: 10px;">🚀 DreamFrame is Evolving</h2>
+    <p style="font-size: 18px;">More magical features are on their way — stay tuned as we bring your memories to life!</p>
+  </div>
+
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</section>
  <button id="dreambot-button" style="
   position: fixed;
   bottom: 20px;
@@ -485,16 +492,6 @@
             max-height: 80vh;
             overflow-y: auto;
         ">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3 style="margin: 0; color: #4a5568;">🤖 DreamBot Assistant</h3>
-                <button id="close-dreambot" style="
-                    background: none;
-                    border: none;
-                    font-size: 24px;
-                    cursor: pointer;
-                    color: #718096;
-                ">×</button>
-            </div>
             <div id="chat-messages" style="
                 min-height: 300px;
                 max-height: 400px;
