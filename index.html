@@ -5,37 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MemoryMotion - Transform Photos into Beautiful Videos</title>
   <style>
-
-    
     .video-gallery {
-  padding: 40px 20px;
-  text-align: center;
-  color: white;
-}
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+    }
 
-.video-gallery h2 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
+    .video-gallery h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  justify-items: center;
-}
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
 
-.gallery-grid img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
+    .gallery-grid img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
 
-.gallery-grid img:hover {
-  transform: scale(1.05);
-}
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -55,7 +54,6 @@
       padding: 0 20px;
     }
 
-    /* Header */
     header {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -90,7 +88,6 @@
       text-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
     }
 
-    /* Glowing header star */
     .glowing-star {
       font-size: 2rem;
       color: #ffffff;
@@ -130,39 +127,6 @@
           0 0 50px #00ffff;
       }
     }
-
-    /* GALLERY SECTION */
-    #gallery {
-      margin: 60px auto;
-      text-align: center;
-    }
-
-    #gallery h2 {
-      color: white;
-      margin-bottom: 30px;
-      font-size: 2.5rem;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
-      justify-items: center;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
@@ -176,46 +140,25 @@
       <div style="font-size: 1.5rem; font-weight: 300; letter-spacing: 0.3em; margin-left: 15px; opacity: 0.9;">LLC</div>
     </div>
   </header>
-<section class="video-gallery">
-  <h2>Our MemoryMotion Samples</h2>
-  <div class="gallery-grid">
-    <a href="videos/Avatar_intro.mp4" target="_blank">
-      <img src="Thumbnail.avatar.jpeg" alt="Avatar Intro">
-    </a>
-    <a href="videos/WWII_love.mp4" target="_blank">
-      <img src="Thumbnail.WWII.jpeg" alt="WWII Love">
-    </a>
-    <a href="videos/bull_charge.mp4" target="_blank">
-      <img src="Thumbnail.bull.jpeg" alt="Bull Charge">
-    </a>
-    <a href="videos/siblings_memories.mp4" target="_blank">
-      <img src="Thumbnail.siblings.jpeg" alt="Siblings Memories">
-    </a>
-  </div>
-</section>
-  <section id="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <video controls poster="thumbnails/birthday_celebration.jpg">
-      <source src="videos/birthday_celebration.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
 
-    <video controls poster="thumbnails/camping_with_grandkids.jpg">
-      <source src="videos/camping_with_grandkids.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <!-- Working Video Gallery -->
+  <section class="video-gallery">
+    <h2>Our MemoryMotion Samples</h2>
+    <div class="gallery-grid">
+      <a href="videos/Avatar_intro.mp4" target="_blank">
+        <img src="thumbnails/Thumbnail.avatar.jpeg" alt="Avatar Intro">
+      </a>
+      <a href="videos/WWII_love.mp4" target="_blank">
+        <img src="thumbnails/Thumbnail.WWII.jpeg" alt="WWII Love">
+      </a>
+      <a href="videos/bull_charge.mp4" target="_blank">
+        <img src="thumbnails/Thumbnail.bull.jpeg" alt="Bull Charge">
+      </a>
+      <a href="videos/siblings_memories.mp4" target="_blank">
+        <img src="thumbnails/Thumbnail.siblings.jpeg" alt="Siblings Memories">
+      </a>
+    </div>
+  </section>
 
-    <video controls poster="thumbnails/church_event_2024.jpg">
-      <source src="videos/church_event_2024.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <video controls poster="thumbnails/family_christmas_2023.jpg">
-      <source src="videos/family_christmas_2023.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</section>
 </body>
 </html>
