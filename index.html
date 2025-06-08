@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MemoryMotion - Transform Photos into Beautiful Videos</title>
   <style>
+    
+    .video-gallery {
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+
+.video-gallery h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.gallery-grid img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
     * {
       margin: 0;
       padding: 0;
