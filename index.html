@@ -23,12 +23,15 @@
       justify-items: center;
     }
 
-    .gallery-grid img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      transition: transform 0.3s;
-      cursor: pointer;
+  .gallery-grid img {
+  width: 100%;
+  max-width: 300px;
+  height: 170px; /* Force consistent height */
+  object-fit: cover; /* Prevent stretching, crop if needed */
+  border-radius: 10px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
     }
 
     .gallery-grid img:hover {
